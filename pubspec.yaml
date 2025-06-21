@@ -6,7 +6,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: any
+  intl: ^0.18.1 # For date formatting
+  sqflite: ^2.3.2 
+  table_calendar: ^3.0.9         # For calendar view
+  googleapis: ^13.1.0            # (future) for Google Calendar API
+  file_picker: ^6.0.0            # For exporting calendar files
 
 dev_dependencies:
   flutter_test:
