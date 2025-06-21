@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      isar_generator:
+        options:
+          collectionIdOverride:
+            Booking: 101101
