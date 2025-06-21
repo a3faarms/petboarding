@@ -1,0 +1,63 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d chrome
+
+## exception
+
+ExistingDartDevelopmentServiceException: DartDevelopmentServiceException: JSON-RPC error 100: Existing VM service clients prevent DDS from taking control.
+
+```
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.32.4, on Microsoft Windows [Version 10.0.26100.4351], locale en-US) [360ms]
+    [32m•[39m Flutter version 3.32.4 on channel stable at C:\Users\anita\develop\flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 6fba2447e9 (9 days ago), 2025-06-12 19:03:56 -0700
+    [32m•[39m Engine revision 8cd19e509d
+    [32m•[39m Dart version 3.8.1
+    [32m•[39m DevTools version 2.45.1
+
+[32m[✓][39m Windows Version (11 Home 64-bit, 24H2, 2009) [18.4s]
+
+[31m[✗][39m Android toolchain - develop for Android devices [25ms]
+    [31m✗[39m Unable to locate Android SDK.
+      Install Android Studio from: https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK components.
+      (or visit https://flutter.dev/to/windows-android-setup for detailed instructions).
+      If the Android SDK has been installed to a custom location, please use
+      `flutter config --android-sdk` to update to that location.
+
+
+[32m[✓][39m Chrome - develop for the web [10ms]
+    [32m•[39m Chrome at C:\Program Files\Google\Chrome\Application\chrome.exe
+
+[31m[✗][39m Visual Studio - develop Windows apps [9ms]
+    [31m✗[39m Visual Studio not installed; this is necessary to develop Windows apps.
+      Download at https://visualstudio.microsoft.com/downloads/.
+      Please install the "Desktop development with C++" workload, including all of its default components
+
+[33m[!][39m Android Studio (not installed) [6ms]
+    [32m•[39m Android Studio not found; download from https://developer.android.com/studio/index.html
+      (or visit https://flutter.dev/to/windows-android-setup for detailed instructions).
+
+[32m[✓][39m VS Code (version 1.100.3) [6ms]
+    [32m•[39m VS Code at C:\Users\anita\AppData\Local\Programs\Microsoft VS Code
+    [32m•[39m Flutter extension can be installed from:
+      🔨 https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+
+[32m[✓][39m Connected device (3 available) [30ms]
+    [32m•[39m Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.26100.4351]
+    [32m•[39m Chrome (web)      • chrome  • web-javascript • Google Chrome 137.0.7151.69
+    [32m•[39m Edge (web)        • edge    • web-javascript • Microsoft Edge 137.0.3296.93
+
+[32m[✓][39m Network resources [210ms]
+    [32m•[39m All expected network resources are available.
+
+[33m![39m Doctor found issues in 3 categories.
+```
