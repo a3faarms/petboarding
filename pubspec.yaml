@@ -1,0 +1,13 @@
+name: pet_boarding_manager
+description: A simple pet boarding management app.
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
