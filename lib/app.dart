@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'features/home/home_screen.dart';
+import 'features/booking/booking_form.dart';
+import 'features/booking/booking_list.dart';
+
 
 class PetBoardingApp extends StatelessWidget {
   const PetBoardingApp({Key? key}) : super(key: key);
@@ -11,6 +14,10 @@ class PetBoardingApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: _appTheme,
       home: const HomeScreen(),
+      routes: {
+        '/booking': (context) => const BookingFormPage(),
+        '/bookings': (context) => const BookingListPage(),
+      },
     );
   }
 }

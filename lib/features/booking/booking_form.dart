@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pet_boarding_manager/services/google_calendar_service.dart';
 import 'package:pet_boarding_manager/data/booking_model.dart';
 import 'package:pet_boarding_manager/data/hive_service.dart';
+import 'package:pet_boarding_manager/services/google_auth_client_web.dart';
+import 'package:googleapis/calendar/v3.dart' as calendar_v3;
+import 'package:http/http.dart';
 
 class BookingFormPage extends StatefulWidget {
   const BookingFormPage({super.key});
@@ -39,7 +43,6 @@ class _BookingFormPageState extends State<BookingFormPage> {
               _buildDatePicker('Check-in Date', _checkIn, (date) => setState(() => _checkIn = date)),
               _buildDatePicker('Check-out Date', _checkOut, (date) => setState(() => _checkOut = date)),
               _buildTextField('Special Notes', _notesController, lines: 3),
-
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _submitForm,
@@ -124,8 +127,51 @@ class _BookingFormPageState extends State<BookingFormPage> {
         return;
       }
 
-      // Booking data can now be passed to DB or logic layer
-      print('Booking confirmed for ${_petNameController.text}');
+      if (_petType == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Please select pet type')),
+        );
+        return;
+      }
+
+      final booking = Booking(
+        petName: _petNameController.text,
+        petType: _petType!,
+        ownerName: _ownerNameController.text,
+        ownerPhone: _ownerPhoneController.text,
+        checkIn: _checkIn!,
+        checkOut: _checkOut!,
+        notes: _notesController.text.trim().isEmpty
+            ? null
+            : _notesController.text.trim(),
+      );
+
+      await HiveService().addBooking(booking);
+      print('✅ Booking stored locally');
+
+      try {
+        final client = await getGoogleAuthClient();
+        if (client == null) {
+          print("❌ Google client not authenticated");
+          return;
+        }
+
+        final calendar = calendar_v3.CalendarApi(client);
+        final event = calendar_v3.Event()
+          ..summary = 'Pet Booking: ${booking.petName}'
+          ..start = (calendar_v3.EventDateTime()
+            ..dateTime = booking.checkIn.toUtc()
+            ..timeZone = "UTC")
+          ..end = (calendar_v3.EventDateTime()
+            ..dateTime = booking.checkOut.toUtc()
+            ..timeZone = "UTC");
+
+        final createdEvent = await calendar.events.insert(event, "primary");
+        print("✅ Google Calendar Event: ${createdEvent.htmlLink}");
+      } catch (e, st) {
+        print("❌ Failed to add booking to Google Calendar: $e\n$st");
+      }
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Booking added!')),
       );
@@ -137,23 +183,5 @@ class _BookingFormPageState extends State<BookingFormPage> {
         _checkOut = null;
       });
     }
-    if (_petType == null || _checkIn == null || _checkOut == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill out all required fields.')),
-      );
-      return;
-    }
-
-    final booking = Booking(
-      petName: _petNameController.text,
-      petType: _petType!,
-      ownerName: _ownerNameController.text,
-      ownerPhone: _ownerPhoneController.text,
-      checkIn: _checkIn!,
-      checkOut: _checkOut!,
-      notes: _notesController.text.trim().isEmpty ? null : _notesController.text.trim(),
-    );
-
-    await HiveService().addBooking(booking);
   }
 }
