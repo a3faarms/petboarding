@@ -6,8 +6,7 @@ import 'package:pet_boarding_manager/features/booking/booking_list.dart';
 import 'package:pet_boarding_manager/data/booking_model.dart';
 import 'package:pet_boarding_manager/data/hive_service.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:pet_boarding_manager/features/calendar/calendar_screen.dart';
-
+import 'package:pet_boarding_manager/features/calendar/calendar_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,7 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final Map<DateTime, List<Booking>> dateMap = {};
 
     for (var booking in bookings) {
-      DateTime date = DateTime(booking.checkIn.year, booking.checkIn.month, booking.checkIn.day);
+      DateTime date = DateTime(
+          booking.checkIn.year, booking.checkIn.month, booking.checkIn.day);
       while (!date.isAfter(booking.checkOut)) {
         final normalized = DateTime(date.year, date.month, date.day);
         dateMap.putIfAbsent(normalized, () => []).add(booking);
@@ -94,17 +94,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               const Text(
                                 'Add New Booking',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 8),
                               SizedBox(
-                                height: 400, // 🔧 Limit the height so ListView can layout it properly
+                                height:
+                                    400, // 🔧 Limit the height so ListView can layout it properly
                                 child: BookingFormPage(),
                               ),
                             ],
                           ),
                         ),
-                        if (isWide) const SizedBox(width: 20) else const SizedBox(height: 20),
+                        if (isWide)
+                          const SizedBox(width: 20)
+                        else
+                          const SizedBox(height: 20),
                         Expanded(
                           flex: 1,
                           child: Column(
@@ -112,22 +117,28 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               const Text(
                                 'Today\'s Bookings',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(height: 8),
                               _selectedBookings.isEmpty
                                   ? const Text('No bookings for today.')
                                   : ListView.builder(
                                       shrinkWrap: true,
-                                      physics: const NeverScrollableScrollPhysics(),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       itemCount: _selectedBookings.length,
                                       itemBuilder: (context, index) {
-                                        final booking = _selectedBookings[index];
+                                        final booking =
+                                            _selectedBookings[index];
                                         return Card(
-                                          margin: const EdgeInsets.symmetric(vertical: 6),
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 6),
                                           child: ListTile(
-                                            title: Text('${booking.petName} (${booking.petType})'),
-                                            subtitle: Text('Owner: ${booking.ownerName} • ${booking.ownerPhone}'),
+                                            title: Text(
+                                                '${booking.petName} (${booking.petType})'),
+                                            subtitle: Text(
+                                                'Owner: ${booking.ownerName} • ${booking.ownerPhone}'),
                                           ),
                                         );
                                       },
@@ -140,15 +151,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 24),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           '📅 Booking Calendar',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         SizedBox(
                           height: 400, // 🔧 Limit the height of calendar view
-                          child: CalendarScreen(),
+                          child: CalendarPage(
+                            bookingsByDate: _bookingsByDate,
+                            onDateSelected: (selectedDate) {
+                              setState(() {
+                                _selectedBookings = _getBookingsForDay(
+                                    selectedDate as DateTime);
+                              });
+                            },
+                          ),
                         ),
                       ],
                     ),

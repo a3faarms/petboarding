@@ -39,9 +39,12 @@ class _BookingFormPageState extends State<BookingFormPage> {
               _buildTextField('Pet Name', _petNameController),
               _buildPetTypeDropdown(),
               _buildTextField('Owner Name', _ownerNameController),
-              _buildTextField('Owner Phone', _ownerPhoneController, inputType: TextInputType.phone),
-              _buildDatePicker('Check-in Date', _checkIn, (date) => setState(() => _checkIn = date)),
-              _buildDatePicker('Check-out Date', _checkOut, (date) => setState(() => _checkOut = date)),
+              _buildTextField('Owner Phone', _ownerPhoneController,
+                  inputType: TextInputType.phone),
+              _buildDatePicker('Check-in Date', _checkIn,
+                  (date) => setState(() => _checkIn = date)),
+              _buildDatePicker('Check-out Date', _checkOut,
+                  (date) => setState(() => _checkOut = date)),
               _buildTextField('Special Notes', _notesController, lines: 3),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -64,7 +67,8 @@ class _BookingFormPageState extends State<BookingFormPage> {
         keyboardType: inputType,
         maxLines: lines,
         decoration: InputDecoration(labelText: label),
-        validator: (value) => value == null || value.isEmpty ? 'Required' : null,
+        validator: (value) =>
+            value == null || value.isEmpty ? 'Required' : null,
       ),
     );
   }
@@ -85,7 +89,8 @@ class _BookingFormPageState extends State<BookingFormPage> {
     );
   }
 
-  Widget _buildDatePicker(String label, DateTime? date, Function(DateTime) onPick) {
+  Widget _buildDatePicker(
+      String label, DateTime? date, Function(DateTime) onPick) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: InkWell(
