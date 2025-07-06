@@ -1,5 +1,5 @@
 import React from 'react'
-import { Trash2, User, Phone, Calendar, FileText } from 'lucide-react'
+import { Trash2, User, Phone, Calendar, FileText, LucideProps } from 'lucide-react'
 import { format } from 'date-fns'
 import { Booking } from '../types/booking'
 
@@ -65,7 +65,7 @@ const ModernBookingCard: React.FC<ModernBookingCardProps> = ({
 }
 
 interface InfoRowProps {
-  icon: React.ComponentType<{ size?: number }>
+  icon: React.ComponentType<LucideProps>
   label: string
   value: string
 }
