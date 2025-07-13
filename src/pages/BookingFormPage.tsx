@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { BookingFormData } from '../types/booking'
 import { useBookings } from '../contexts/BookingContext'
+import VoiceBooking  from '../components/VoiceBooking';
 
 const BookingFormPage: React.FC = () => {
   const navigate = useNavigate()
@@ -204,6 +205,10 @@ const BookingFormPage: React.FC = () => {
               {isSubmitting ? 'Creating Booking...' : 'Create Booking'}
             </button>
           </form>
+          {/* 👇 Add VoiceBooking right here */}
+        <div className="mt-12">
+          <VoiceBooking />
+        </div>
         </motion.div>
       </div>
     </div>
@@ -251,5 +256,5 @@ const PetTypeCard: React.FC<PetTypeCardProps> = ({ type, label, isSelected, regi
     </label>
   )
 }
-
+<VoiceBooking />
 export default BookingFormPage
