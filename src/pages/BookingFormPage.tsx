@@ -6,11 +6,7 @@ import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { BookingFormData } from '../types/booking'
 import { useBookings } from '../contexts/BookingContext'
-<<<<<<< Updated upstream
 import VoiceBooking  from '../components/VoiceBooking';
-=======
-import VoiceBooking from '../components/VoiceBooking';
->>>>>>> Stashed changes
 
 const BookingFormPage: React.FC = () => {
   const navigate = useNavigate()
@@ -260,9 +256,5 @@ const PetTypeCard: React.FC<PetTypeCardProps> = ({ type, label, isSelected, regi
     </label>
   )
 }
-<VoiceBooking />
-<<<<<<< Updated upstream
+
 export default BookingFormPage
-=======
-export default BookingFormPage
->>>>>>> Stashed changes
