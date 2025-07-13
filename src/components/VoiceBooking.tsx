@@ -89,7 +89,8 @@ const VoiceBooking: React.FC = () => {
   }
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: '2rem', background: '#eee', border: '2px solid red' }}>
+      <h2>Voice Facilitator</h2>
       <button onClick={startVoiceFlow} disabled={isBooking}>
         🎤 Start Voice Booking
       </button>
