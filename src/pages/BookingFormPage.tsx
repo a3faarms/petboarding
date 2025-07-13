@@ -182,7 +182,9 @@ const BookingFormPage: React.FC = () => {
                     )}
                   </div>
                 </div>
-
+                <div style={{ padding: '2rem', background: '#eee', border: '2px solid red' }}>
+                  <h2>Voice Facilitator</h2>
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Special Notes (Optional)
