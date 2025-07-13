@@ -1,5 +1,6 @@
 import React from 'react'
-import { Trash2, User, Phone, Calendar, FileText, LucideCrop as LucideProps } from 'lucide-react'
+import type { LucideProps } from 'lucide-react'
+import { Trash2, User, Phone, Calendar, FileText } from 'lucide-react'
 import { format } from 'date-fns'
 import { Booking } from '../types/booking'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { DivideIcon as LucideIcon } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react';
 
 interface ModernCapacityCardProps {
   title: string
@@ -16,7 +16,6 @@ const ModernCapacityCard: React.FC<ModernCapacityCardProps> = ({
   total,
   icon: Icon,
   gradient,
-  accentColor,
 }) => {
   const percentage = total > 0 ? (current / total) * 100 : 0
 
