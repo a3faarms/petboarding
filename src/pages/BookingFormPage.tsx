@@ -256,5 +256,5 @@ const PetTypeCard: React.FC<PetTypeCardProps> = ({ type, label, isSelected, regi
     </label>
   )
 }
-<VoiceBooking />
+
 export default BookingFormPage
