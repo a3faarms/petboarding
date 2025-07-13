@@ -6,7 +6,8 @@ import { motion } from 'framer-motion'
 import toast from 'react-hot-toast'
 import { BookingFormData } from '../types/booking'
 import { useBookings } from '../contexts/BookingContext'
-
+import { VoiceBooking } from '../components/VoiceBooking';
+<VoiceBooking />
 const BookingFormPage: React.FC = () => {
   const navigate = useNavigate()
   const { addBooking } = useBookings()
