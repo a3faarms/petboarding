@@ -182,9 +182,6 @@ const BookingFormPage: React.FC = () => {
                     )}
                   </div>
                 </div>
-                <div style={{ padding: '2rem', background: '#eee', border: '2px solid red' }}>
-                  <h2>Voice Facilitator</h2>
-                </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Special Notes (Optional)
@@ -259,8 +256,4 @@ const PetTypeCard: React.FC<PetTypeCardProps> = ({ type, label, isSelected, regi
   )
 }
 
-<<<<<<< HEAD
 export default BookingFormPage
-=======
-export default BookingFormPage
->>>>>>> 27e195ac4a2da4210e713e4bffbcaec9def98bd6

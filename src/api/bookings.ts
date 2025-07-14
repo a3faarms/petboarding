@@ -1,10 +1,5 @@
 // src/api/bookings.tsimport { SupabaseClient } from '@supabase/supabase-js';
-import { SupabaseClient } from '@supabase/supabase-js';
-// Initialize supabase client with your Supabase URL and anon key
-export const supabase: SupabaseClient = new SupabaseClient(
-  process.env.REACT_APP_SUPABASE_URL as string,
-  process.env.REACT_APP_SUPABASE_ANON_KEY as string
-);
+import { supabase } from '../types/supabaseClient'; 
 
 export interface BookingPayload {
   pet_name: string;
